@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Conversor de Unidades</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        /* Estilos similares al ejemplo anterior */
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #6dd5ed, #2193b0);
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: slideDown 1s ease-out;
+        }
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            animation: slideDown 3s ease-out;
+        }
+
+        .converter {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 10px auto;
+            max-width: 400px;
+            animation: scaleIn 1s ease-out;
+        }
+
+        label {
+            display: block;
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+
+        input, select, button {
+            font-size: 1rem;
+            padding: 10px;
+            margin: 10px 0;
+            border: none;
+            border-radius: 5px;
+            width: calc(100% - 22px);
+            transition: background 0.3s ease, transform 0.3s ease;
+        }
+
+        input:focus, select:focus {
+            background-color: #87ceeb;
+            transform: scale(1.05);
+        }
+
+        button {
+            background: #2193b0;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #6dd5ed;
+            transform: scale(1.1);
+            animation: bounce 0.5s ease-in-out;
+        }
+
+        .result {
+            font-size: 1.2rem;
+            margin-top: 10px;
+            animation: fadeIn 1s ease-out;
+        }
+
+        /* Animaciones */
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            0% { transform: translateY(-50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes scaleIn {
+            0% { transform: scale(0.8); opacity: 0; }
+            100% { transform: scale(1); opacity: 1; }
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+    </style>
+</head>
+<body>
+    <audio autoplay>
+        <source src="tranca.mp3" type="audio/mpeg">
+        Tu navegador no soporta reproducción de audio.
+    </audio>
+
+    <h1>Conversor de Unidades</h1>
+    <h3>echo por jona</h2>
+    <div class="converter">
+        <label for="inputValue">Introduce un valor:</label>
+        <input type="number" id="inputValue" placeholder="Ej: 100" />
+
+        <label for="unitType">Selecciona una conversión:</label>
+        <select id="unitType">
+            <option value="cToF">Celsius a Fahrenheit</option>
+            <option value="fToC">Fahrenheit a Celsius</option>
+            <option value="kmToMi">Kilómetros a Millas</option>
+            <option value="miToKm">Millas a Kilómetros</option>
+            <option value="mToCm">Metros a Centímetros</option>
+            <option value="cmToM">Centímetros a Metros</option>
+        </select>
+
+        <button onclick="convert()">Convertir</button>
+        <div class="result" id="result"></div>
+    </div>
+
+    <script>
+        function convert() {
+            const inputValue = parseFloat(document.getElementById("inputValue").value);
+            const unitType = document.getElementById("unitType").value;
+            const resultField = document.getElementById("result");
+            let result;
+
+            if (isNaN(inputValue)) {
+                resultField.textContent = "Por favor, introduce un número válido.";
+                return;
+            }
+
+            switch (unitType) {
+                case "cToF":
+                    result = (inputValue * 9/5) + 32;
+                    resultField.textContent = `${inputValue} °C son ${result.toFixed(2)} °F.`;
+                    break;
+                case "fToC":
+                    result = (inputValue - 32) * 5/9;
+                    resultField.textContent = `${inputValue} °F son ${result.toFixed(2)} °C.`;
+                    break;
+                case "kmToMi":
+                    result = inputValue * 0.621371;
+                    resultField.textContent = `${inputValue} km son ${result.toFixed(2)} millas.`;
+                    break;
+                case "miToKm":
+                    result = inputValue / 0.621371;
+                    resultField.textContent = `${inputValue} millas son ${result.toFixed(2)} km.`;
+                    break;
+                case "mToCm":
+                    result = inputValue * 100;
+                    resultField.textContent = `${inputValue} m son ${result.toFixed(2)} cm.`;
+                    break;
+                case "cmToM":
+                    result = inputValue / 100;
+                    resultField.textContent = `${inputValue} cm son ${result.toFixed(2)} m.`;
+                    break;
+                default:
+                    resultField.textContent = "Conversión no válida.";
+            }
+        }
+    </script>
+</body>
+</html>
