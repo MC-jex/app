@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aspie de Ropa Virtual</title>
+    <title>Disponible</title>
     <style>
         /* Estilo general de la página */
         body {
@@ -11,109 +11,145 @@
             background-color: #f5f5f5;
             text-align: center;
             padding-top: 50px;
+            margin: 0;
+            color: #333;
         }
 
-        /* Estilo de la imagen */
-        #ropa-img {
-            width: 60%;
-            max-width: 400px;
+        h1 {
+            font-size: 2em;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        /* Estilo de la galería de imágenes */
+        .galeria {
+            display: flex;
+            flex-direction: column; /* Las imágenes se apilan verticalmente */
+            align-items: center; /* Las imágenes estarán centradas horizontalmente */
+            gap: 20px; /* Espacio entre cada imagen */
+            margin-bottom: 30px;
+            padding: 10px;
+        }
+
+        .galeria img {
+            width: 90%; /* Ocupa el 90% del ancho de la pantalla */
+            max-width: 400px; /* Limita el tamaño máximo de la imagen */
+            height: auto;
             cursor: pointer;
             border-radius: 10px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            opacity: 0;
+            animation: fadeIn 1s forwards;
             transition: transform 0.3s ease;
         }
 
-        #ropa-img:hover {
-            transform: scale(1.05);
+        .galeria img:hover {
+            transform: scale(1.05); /* Efecto de hover para ampliar la imagen */
         }
 
-        /* Contenedor de los botones */
-        #botones {
-            display: none;
-            margin-top: 20px;
-            transition: opacity 0.5s ease;
+        /* Animación para que las imágenes aparezcan con suavidad */
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        /* Estilo de los botones */
-        .btn {
+        /* Estilo del botón */
+        .btn-consultar {
             padding: 15px 30px;
-            margin: 10px;
             font-size: 18px;
             color: white;
+            background-color: #007bff;
             border: none;
             border-radius: 5px;
             cursor: pointer;
             transition: transform 0.2s ease;
+            display: none; /* Se oculta inicialmente */
+            margin-top: 10px;
             opacity: 0;
+            animation: fadeInButton 1s forwards;
         }
 
-        .btn:hover {
+        .btn-consultar:hover {
             transform: scale(1.1);
         }
 
-        /* Botón de descargar */
-        .btn-descargar {
-            background-color: #28a745;
-        }
-
-        /* Botón de consultar */
-        .btn-consultar {
-            background-color: #007bff;
-        }
-
-        /* Animación de aparición de los botones */
-        @keyframes fadeIn {
+        /* Animación para que los botones de consultar aparezcan con suavidad */
+        @keyframes fadeInButton {
             0% {
                 opacity: 0;
+                transform: translateY(20px);
             }
             100% {
                 opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        /* Animación para los botones */
-        .btn.show {
-            animation: fadeIn 1s ease forwards;
-        }
     </style>
 </head>
 <body>
 
     <h1>Bienvenido al Aspie de Ropa Virtual</h1>
 
-    <!-- Imagen de la ropa -->
-    <img src="hola.jpg" alt="Ropa Virtual" id="ropa-img" onclick="mostrarBotones()">
-
-    <!-- Contenedor de los botones -->
-    <div id="botones">
-        <button class="btn btn-descargar show" onclick="descargar()">Descargar</button>
-        <button class="btn btn-consultar show" onclick="consultar()">Consultar</button>
+    <!-- Galería de imágenes (una debajo de la otra) -->
+    <div class="galeria">
+        <div class="imagen" id="img-1">
+            <img src="1.jpg" alt="Ropa 1" onclick="mostrarBotonConsultar(1)">
+            <button class="btn-consultar" id="btn-1" onclick="consultar(1)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-2">
+            <img src="2.jpg" alt="Ropa 2" onclick="mostrarBotonConsultar(2)">
+            <button class="btn-consultar" id="btn-2" onclick="consultar(2)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-3">
+            <img src="3.jpg" alt="Ropa 3" onclick="mostrarBotonConsultar(3)">
+            <button class="btn-consultar" id="btn-3" onclick="consultar(3)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-4">
+            <img src="4.jpg" alt="Ropa 4" onclick="mostrarBotonConsultar(4)">
+            <button class="btn-consultar" id="btn-4" onclick="consultar(4)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-5">
+            <img src="5.jpg" alt="Ropa 5" onclick="mostrarBotonConsultar(5)">
+            <button class="btn-consultar" id="btn-5" onclick="consultar(5)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-6">
+            <img src="6.jpg" alt="Ropa 6" onclick="mostrarBotonConsultar(6)">
+            <button class="btn-consultar" id="btn-6" onclick="consultar(6)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-7">
+            <img src="7.jpg" alt="Ropa 7" onclick="mostrarBotonConsultar(7)">
+            <button class="btn-consultar" id="btn-7" onclick="consultar(7)">Consultar</button>
+        </div>
+        <div class="imagen" id="img-8">
+            <img src="8.jpg" alt="Ropa 8" onclick="mostrarBotonConsultar(8)">
+            <button class="btn-consultar" id="btn-8" onclick="consultar(8)">Consultar</button>
+        </div>
     </div>
 
     <script>
-        // Función para mostrar los botones al hacer clic en la imagen
-        function mostrarBotones() {
-            document.getElementById('botones').style.display = 'block';
+        // Función para mostrar el botón de consultar cuando se hace clic en una imagen
+        function mostrarBotonConsultar(imagenId) {
+            // Esconde todos los botones antes de mostrar uno
+            for (let i = 1; i <= 8; i++) {
+                document.getElementById('btn-' + i).style.display = 'none';
+            }
             
-            // Hacer que los botones aparezcan con animación
-            const botones = document.querySelectorAll('.btn');
-            botones.forEach((boton, index) => {
-                setTimeout(() => {
-                    boton.classList.add('show');
-                }, index * 300); // Retrasar la aparición de cada botón
-            });
+            // Muestra el botón de la imagen seleccionada
+            document.getElementById('btn-' + imagenId).style.display = 'block';
         }
 
-        // Función para la acción de descarga
-        function descargar() {
-            alert('Descarga en proceso (esta es una acción ficticia).');
-            // Aquí puedes agregar la lógica para descargar un archivo o redirigir a una URL de descarga
-        }
-
-        // Función para abrir WhatsApp con el número de empresa
-        function consultar() {
-            const numeroWhatsApp = 'https://wa.me/5493725465878'; // Tu número de WhatsApp con código de país Argentina
-            window.open(numeroWhatsApp, '_blank');
+        // Función para abrir WhatsApp con el número de empresa y mensaje personalizado
+        function consultar(imagenId) {
+            const numeroWhatsApp = 'https://wa.me/5493725465878'; // Número de WhatsApp con código de país Argentina
+            const mensaje = `Hola, me gustaría consultar sobre la prenda:`;
+            window.open(`${numeroWhatsApp}?text=${encodeURIComponent(mensaje)}`, '_blank');
         }
     </script>
 
